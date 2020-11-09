@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Remind } from '../interfaces/remind';
+import { ReminderService } from '../services/reminder.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,20 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  public reminders: Remind[] = [];
+
+  constructor(private reminderService: ReminderService) {
+    this.getReminders();
+  }
+
+  public getReminders() {
+    this.reminders = this.reminderService.getReminders();
+  }
+
+  public deleteRemind(item: Remind) {
+    let index = this.reminders.indexOf(item);
+    this.reminderService.deleteRemind(index);
+    this.getReminders();
+  }
 
 }

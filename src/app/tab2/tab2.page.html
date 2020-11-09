@@ -1,17 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Add Reminder
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <form [formGroup]="reminderForm" (ngSubmit)="this.createRemind()">
+    <ion-item>
+      <ion-label color="primary" fixed></ion-label>
+      <ion-input type="textarea" placeholder="Activity" formControlName="todo" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" fixed>Date</ion-label>
+      <ion-datetime displayFormat="H:m DD.MM.YYYY" formControlName="date" [(ngModel)]="date" required></ion-datetime>
+    </ion-item>
+    <ion-button type="submit" color="primary" expand="block" fill="outline">Submit</ion-button>
+  </form>
 </ion-content>
